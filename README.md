@@ -14,13 +14,13 @@
 #### Установите виртуальное окружение
 
 -   `python3 -m venv venv` в Linux/macOS;
--   `python -m venv venv` или `py -3 -m venv venv` в Windows
+-   `python -m venv venv` или `py -3 -m venv venv` в Windows;
 
 #### Активируйте виртуальное окружение
 
-Из директории xml_cashback выполните команду:
-    -   Linux/macOS: `source venv/bin/activate`;
-    -   Windows: ` venv\Scripts\activate.bat`
+Из директории xml_replace_tag выполните команду:
+- `source venv/bin/activate` в Linux/macOS;
+- ` venv\Scripts\activate.bat` в Windows;
 
 #### Обновите пакетный менеджер
   При создании виртуального окружения будет использоваться та версия менеджера, которая была установлена вместе с Python. И это будет, скорее всего, не самая последняя версия, о чём вам и будет сообщаться каждый раз при обращении к нему.
