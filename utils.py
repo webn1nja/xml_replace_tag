@@ -16,11 +16,13 @@ def get_file_xml() -> str:
     HTTP_HEADERS = {'User-Agent': USER_AGENT}
     BASE_URL = 'http://' + url.rsplit('/')[2]
     HTTP_HEADERS['Referer'] = BASE_URL
+    HTTP_HEADERS['Content-Type'] = 'text/html; charset=utf-8'
     s = requests.session()
     s.headers = HTTP_HEADERS
     try:
         scraper_one = cfscrape.create_scraper(sess=s)
         r = scraper_one.get(url)
+
         content = r.text
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
@@ -47,3 +49,19 @@ def replace_tags(xml_file: str, warehouse_names: list) -> str:
 def generate_output_file(content: str) -> TextIO:
     with open('result_' + fname[1:], 'w', encoding="utf-8") as f:
         f.write(content)
+
+
+# def check_counter(number):
+
+#     with open(vars.counter_file, 'r', encoding="utf-8") as f:
+#         rez = f.read()
+
+#     if (int(rez) == 0):
+#         print('Происходит первый запуск скрипта')
+#         return True
+#     elif (int(rez) == number):
+#         print('Изменений в фиде не обнаружено')
+#         return False
+#     else:
+#         print('Обнаружены изменения в фиде')
+#         return True

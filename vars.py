@@ -1,7 +1,6 @@
 
 # сслыка, содержимое которой обрабатывается
 link = 'https://all-cool.ru/bitrix/catalog_export/export_ozon.xml'
-
 '''
 Названия складов.
 Добавлять можно сколько угодно.
