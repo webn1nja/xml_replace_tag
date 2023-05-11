@@ -1,8 +1,10 @@
 ## A simple Python script that replaces tags in an xml document with Cloudflare's anti-bot page bypass
 
+###### ver. 1.1
+
 
  На входе - файл xml по ссылке, на выходе такой же xml.
- Скрипт должен заменить тег <count> в ссылке на тег <outlet instock>.
+ Скрипт должен заменить тег <count> в ссылке на тег <outlet> с различными атрибутами.
 
  Для получения содержимого предложенного url выполняется обход Cloudflare's anti-bot page
 

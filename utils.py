@@ -1,17 +1,16 @@
 import cfscrape
 import requests
+import vars
 from requests.exceptions import HTTPError
 from typing import TextIO
 
 
-link = 'https://all-cool.ru/bitrix/catalog_export/export_ozon.xml'
-
-fname_index = link.rfind('/')
-fname = link[fname_index:]
+fname_index = vars.link.rfind('/')
+fname = vars.link[fname_index:]
 
 
 def get_file_xml() -> str:
-    url = link
+    url = vars.link
     USER_AGENT = ('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, '
                   'like Gecko) Chrome/50.0.2661.102 Safari/537.36')
     HTTP_HEADERS = {'User-Agent': USER_AGENT}
@@ -35,10 +34,13 @@ def get_file_xml() -> str:
     return content
 
 
-def replace_tags(xml_file: str) -> str:
+def replace_tags(xml_file: str, warehouse_names: list) -> str:
 
-    tmp = xml_file.replace('<count>', '<outlet instock>')
-    rez = tmp.replace('</count>', '</outlet instock>')
+    str_to_paste = '<outlets>'
+    for wh in warehouse_names:
+        str_to_paste += f'<outlet instock="10" warehouse_name="{wh}"></outlet>'
+    tmp = xml_file.replace('<count>10', str_to_paste)
+    rez = tmp.replace('</count>', '</outlets>')
     return rez
 
 
