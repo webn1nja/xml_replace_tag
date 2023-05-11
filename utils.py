@@ -22,7 +22,7 @@ def get_file_xml() -> str:
     try:
         scraper_one = cfscrape.create_scraper(sess=s)
         r = scraper_one.get(url)
-
+        r.encoding = 'utf-8'
         content = r.text
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
