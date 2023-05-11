@@ -1,6 +1,6 @@
 ## A simple Python script that replaces tags in an xml document with Cloudflare's anti-bot page bypass
 
-###### ver. 1.1
+###### ver. 1.2
 
 
  На входе - файл xml по ссылке, на выходе такой же xml.
