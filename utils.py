@@ -1,6 +1,7 @@
 import cfscrape
 import requests
 import vars
+import hashlib
 from requests.exceptions import HTTPError
 from typing import TextIO
 
@@ -51,17 +52,24 @@ def generate_output_file(content: str) -> TextIO:
         f.write(content)
 
 
-# def check_counter(number):
+def check_counter(xml_file: str) -> bool:
+    input_file_hash = hashlib.md5(xml_file.encode('utf-8')).hexdigest()
 
-#     with open(vars.counter_file, 'r', encoding="utf-8") as f:
-#         rez = f.read()
+    with open(vars.hash_file, 'r', encoding="utf-8") as f:
+        rez = f.read()
 
-#     if (int(rez) == 0):
-#         print('Происходит первый запуск скрипта')
-#         return True
-#     elif (int(rez) == number):
-#         print('Изменений в фиде не обнаружено')
-#         return False
-#     else:
-#         print('Обнаружены изменения в фиде')
-#         return True
+    if (rez == 0):
+        print('Происходит первый запуск скрипта')
+        return True
+    elif (rez == input_file_hash):
+        print('Изменений в фиде не обнаружено')
+        return False
+    else:
+        print('Обнаружены изменения в фиде')
+        return True
+
+
+def save_hash(xml_file: str) -> TextIO:
+
+    with open(vars.hash_file, 'w', encoding="utf-8") as f:
+        f.write(hashlib.md5(xml_file.encode('utf-8')).hexdigest())

@@ -6,12 +6,12 @@ import vars
 import utils as ut
 
 
-if __name__ == '__main__':    
+if __name__ == '__main__':
     # скачиваем файл
     xml_file = ut.get_file_xml()
 
     # проверяем нужно ли изменять файл
-    if '<count>' in xml_file:
+    if ut.check_counter(xml_file):
 
         # заменяем теги
         content = ut.replace_tags(xml_file, vars.warehouse_names)
@@ -21,3 +21,6 @@ if __name__ == '__main__':
 
     else:
         print('Модификация файла не требуется')
+
+    # Сохраняем хэш содержимого для дальнейшей провекри
+    ut.save_hash(xml_file)
